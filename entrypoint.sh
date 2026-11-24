@@ -6,7 +6,7 @@ case "${1:-}" in
     cat <<'JSON'
 {
   "protocol_version": "1.0",
-  "supported_tasks": ["T2"],
+  "supported_tasks": ["T2", "T4"],
   "self_trained_rl": false,
   "preferred_speed_mps": null
 }
@@ -20,7 +20,13 @@ JSON
     set -u
     exec python3 /home/appuser/ws/safety_filter.py
     ;;
-  T3|T4|T5)
+  T4)
+    set +u
+    source /opt/ros/humble/setup.bash
+    set -u
+    exec python3 /home/appuser/ws/odom_node.py
+    ;;
+  T3|T5)
     echo "Task $1 is not implemented yet" >&2
     exit 1
     ;;
