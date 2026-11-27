@@ -22,10 +22,12 @@ RUN sed -i 's/\r$//' /entrypoint.sh && chmod 755 /entrypoint.sh \
 
 WORKDIR /home/appuser/ws
 COPY model ./model
+COPY rl_training/artifacts/best_policy_weights.npz ./policy_weights.npz
 COPY safety_filter.py ./safety_filter.py
 COPY odom_node.py ./odom_node.py
+COPY rl_node.py ./rl_node.py
 RUN chown -R appuser:appuser /home/appuser \
-    && chmod 755 /home/appuser /home/appuser/ws ./safety_filter.py ./odom_node.py \
+    && chmod 755 /home/appuser /home/appuser/ws ./safety_filter.py ./odom_node.py ./rl_node.py \
     && chmod -R a+rX /home/appuser/ws
 
 USER appuser
