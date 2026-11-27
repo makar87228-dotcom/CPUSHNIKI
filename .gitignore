@@ -1,0 +1,5 @@
+﻿.venv/
+__pycache__/
+*.pyc
+rl_training/artifacts/backup_v1/
+rl_training/artifacts/backup_v2/

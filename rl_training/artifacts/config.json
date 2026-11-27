@@ -1,0 +1,21 @@
+{
+  "algorithm": "PPO (Pretrain + 2-stage RL Fine-tuning)",
+  "stages": [
+    "1: Heuristic trot pretrain (35 epochs)",
+    "2: PPO RL walk in exact Go1 MuJoCo + SafetyFilter (1M steps)",
+    "3: Straight & speed-tracking fine-tuning (500k + 500k steps, lr=1.5e-4->1e-4)"
+  ],
+  "total_timesteps": 2000000,
+  "policy_freq_hz": 50,
+  "safety_filter_freq_hz": 100,
+  "kp": 35.0,
+  "kd": 1.0,
+  "action_scale": 0.35,
+  "net_arch": [
+    256,
+    128,
+    64
+  ],
+  "activation": "tanh",
+  "preferred_speed_mps": 0.55
+}
